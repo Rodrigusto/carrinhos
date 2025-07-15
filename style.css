@@ -1,65 +1,171 @@
+/* Variáveis CSS para cores e tamanhos */
+:root {
+  --primary-color: #005baa;
+  --secondary-color: #e9f1fb;
+  --text-color: #333;
+  --white: #fff;
+  --border-radius: 6px;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 1.5rem;
+}
+
+/* Reset e Base */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
 }
 
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium);
+}
+
+/* Cabeçalho */
 header {
-  background: #005baa;
-  color: white;
-  padding: 20px;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: var(--spacing-large);
   text-align: center;
 }
 
+header h1 {
+  margin: 0;
+  font-size: clamp(1.25rem, 4vw, 2rem); /* Tamanho responsivo */
+}
+
+/* Navegação */
 nav {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: var(--spacing-small);
+  padding: var(--spacing-medium) 0;
 }
 
 nav button {
   flex: 1 1 auto;
+  min-width: 80px;
   max-width: 120px;
-  word-wrap: break-word;
+  padding: var(--spacing-small) var(--spacing-medium);
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: clamp(0.75rem, 3vw, 1rem); /* Fonte responsiva */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-nav button:hover {
-  background: white;
-  color: #005baa;
+nav button:hover, 
+nav button:focus {
+  background: var(--white);
+  color: var(--primary-color);
+  outline: none;
 }
 
+/* Conteúdo Principal */
 main {
-  padding: 20px;
+  padding: var(--spacing-medium);
 }
 
+/* Turnos/Sessões */
 .turno {
-  background: #e9f1fb;
-  padding: 10px;
-  margin: 10px 0;
-  border-left: 5px solid #005baa;
-  border-radius: 6px;
+  background: var(--secondary-color);
+  padding: var(--spacing-medium);
+  margin: var(--spacing-medium) 0;
+  border-left: 5px solid var(--primary-color);
+  border-radius: var(--border-radius);
 }
-/* Deixe os botões menores sem afetar todo o layout */
+
+/* Botões do Menu */
+.menu-carrinhos, 
+.menu-dias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-small);
+  margin-bottom: var(--spacing-medium);
+}
+
 .menu-carrinhos button,
 .menu-dias button {
-  font-size: 16px;
-  padding: 10px 14px;
-  min-width: 80px;
+  font-size: clamp(0.75rem, 3vw, 1rem);
+  padding: 0.5rem 0.75rem;
+  min-width: 60px;
   max-width: 120px;
   flex: 1 1 auto;
   white-space: nowrap;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-@media (max-width: 600px) {
+.menu-carrinhos button:hover,
+.menu-dias button:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+}
+
+/* Media Queries para ajustes específicos */
+@media (max-width: 768px) {
+  nav {
+    gap: 0.25rem;
+  }
+  
+  nav button {
+    min-width: 70px;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .turno {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 1rem;
+  }
+  
+  .menu-carrinhos,
+  .menu-dias {
+    justify-content: center;
+  }
+  
   .menu-carrinhos button,
   .menu-dias button {
-    font-size: 14px;
-    padding: 8px 10px;
-    min-width: 60px;
+    min-width: 50px;
+    padding: 0.4rem;
+    font-size: 0.7rem;
   }
+}
 
-  header h1 {
-    font-size: 18px;
-    padding: 10px;
-  }
+/* Melhorias para acessibilidade */
+button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.tabela-escalas {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  min-width: 600px; /* Largura mínima antes do scroll */
+  width: 100%;
 }
